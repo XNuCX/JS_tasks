@@ -20,3 +20,18 @@ function gratest(num1, num2) {
   }
 }
 gratest(15, 5);
+
+function same(numberInt) {
+  let strIng = String(numberInt);
+  const arrNum = [];
+  for (let i = 0; i < strIng.length; i++) {
+    arrNum.push(strIng[i]);
+  }
+  let sumInt = arrNum.reduce((acc, val) => Number(acc) + Number(val));
+  if (new Set(arrNum).size === 1) {
+    console.log(true);
+  } else console.log(false);
+
+  console.log(sumInt);
+}
+same(2222222);
