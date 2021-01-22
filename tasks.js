@@ -35,3 +35,21 @@ function same(numberInt) {
   console.log(sumInt);
 }
 same(2222222);
+
+function walk(stepsToUniversity, lengthFootprintInM, stSpeedinKMH) {
+  let lengthToUni = stepsToUniversity * lengthFootprintInM;
+  const formul = lengthToUni / ((stSpeedinKMH * 1000) / 3600);
+  const restSec = Math.trunc(lengthToUni / 500);
+  let totalSecs = formul + restSec * 60;
+  let secs = Math.ceil(totalSecs % 60);
+  let mins = Math.trunc(totalSecs / 60);
+  let hour = Math.trunc(mins / 60);
+
+  function check(times) {
+    if (times < 10) {
+      return `0${times}`;
+    } else return times;
+  }
+  console.log(`${check(hour)}:${check(mins)}:${check(secs)}`);
+}
+walk(2564, 0.7, 5.5);
