@@ -53,3 +53,43 @@ function walk(stepsToUniversity, lengthFootprintInM, stSpeedinKMH) {
   console.log(`${check(hour)}:${check(mins)}:${check(secs)}`);
 }
 walk(2564, 0.7, 5.5);
+
+function radar(speed, area) {
+  let limit;
+  const overlimit = function (speed, areaMax) {
+    if (speed > areaMax) {
+      if (speed - areaMax > 40) {
+        console.log(
+          `The speed is ${
+            speed - areaMax
+          } km/h faster than the allowed speed of ${areaMax} - reckless driving`
+        );
+      } else if (speed - areaMax > 20) {
+        console.log(
+          `The speed is ${
+            speed - areaMax
+          } km/h faster than the allowed speed of ${areaMax} - excessive speeding`
+        );
+      } else
+        console.log(
+          `The speed is ${
+            speed - areaMax
+          } km/h faster than the allowed speed of ${areaMax} - speeding`
+        );
+    } else console.log(`Driving ${speed} km/h in a ${areaMax} zone`);
+  };
+  if (area === "motorway") {
+    limit = 130;
+    overlimit(speed, limit);
+  } else if (area === "interstate") {
+    limit = 90;
+    overlimit(speed, limit);
+  } else if (area === "city") {
+    limit = 50;
+    overlimit(speed, limit);
+  } else if (area === "residential") {
+    limit = 20;
+    overlimit(speed, limit);
+  }
+}
+radar(200, "motorway");
