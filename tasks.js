@@ -209,3 +209,52 @@ function construction(obj) {
   return obj;
 }
 construction({ weight: 120, experience: 20, levelOfHydrated: 200 });
+
+function carFactory(obj) {
+  const inventory = {
+    "Small engine": { power: 90, volume: 1800 },
+    "Normal engine": { power: 120, volume: 2400 },
+    "Monster engine": { power: 200, volume: 3500 },
+    Hatchback: { type: "hatchback", color: "" },
+    Coupe: { type: "coupe", color: "" },
+    wheels: [],
+  };
+  const engine = function () {
+    for (let [k, val] of Object.entries(inventory)) {
+      if (val["power"] >= obj.power) {
+        return inventory[k];
+      }
+    }
+  };
+
+  const carriage = function () {
+    for (let [k, v] of Object.entries(inventory)) {
+      if (v.type === obj.carriage) {
+        inventory[k]["color"] = obj.color;
+        return inventory[k];
+      }
+    }
+  };
+
+  const wheels = function () {
+    if (obj.wheelsize % 2 === 0) {
+      let weel = Math.trunc(obj.wheelsize - 1);
+      return new Array(4).fill(weel);
+    } else return new Array(4).fill(Math.trunc(obj.wheelsize));
+  };
+
+  const car = {};
+
+  car["model"] = obj.model;
+  car["engine"] = engine();
+  car["carriage"] = carriage();
+  car["wheels"] = wheels();
+  return car;
+}
+carFactory({
+  model: "Brichka",
+  power: 65,
+  color: "white",
+  carriage: "hatchback",
+  wheelsize: 16,
+});
