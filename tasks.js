@@ -258,3 +258,26 @@ carFactory({
   carriage: "hatchback",
   wheelsize: 16,
 });
+
+function heroicInvent(arr) {
+  let arr1 = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    let arr0 = arr[i].split(" / ");
+    let hero = {
+      name: arr0[0],
+      level: Number(arr0[1]),
+    };
+    if (arr0[2]) {
+      hero["items"] = arr0[2].split(", ");
+    } else hero["items"] = [];
+    arr1.push(hero);
+  }
+  let result = JSON.stringify(arr1);
+  return result;
+}
+heroicInvent([
+  "Isacc / 25 / Apple, GravityGun",
+  "Derek / 12 / BarrelVest, DestructionSword",
+  "Hes / 1",
+]);
