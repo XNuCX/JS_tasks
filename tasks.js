@@ -313,3 +313,46 @@ lowestPrices([
   "Mexico City | Audi | 100000",
   "Washington City | Mercedes | 1000",
 ]);
+
+function stroreCatalogue(arr) {
+  const obj = {};
+  arr.sort((a, b) => {
+    let alphaA = a.toUpperCase();
+    let alphaB = b.toUpperCase();
+    if (alphaA > alphaB) return 1;
+    if (alphaA < alphaB) return -1;
+    return 0;
+  });
+  //   console.log(arr);
+
+  for (let el of arr) {
+    let [nameGroup, number] = el.split(" : ");
+    obj[`${el.slice(0, 1)}`] = [];
+
+    // obj[`${el.slice[(0, 1)]}`][`${nameGroup}`] = Number(number);
+  }
+  for (let el of arr) {
+    obj[`${el.slice(0, 1)}`].push(el);
+  }
+  for (let [k, v] of Object.entries(obj)) {
+    console.log(k);
+
+    for (let el of v) {
+      let [name1, num] = el.split(" : ");
+      console.log(`  ${name1}: ${num}`);
+    }
+  }
+
+  //   console.log(obj);
+}
+
+stroreCatalogue([
+  "Banana : 2",
+  "Rubic's Cube : 5",
+  "Raspberry P : 4999",
+  "Rolex : 100000",
+  "Rollon : 10",
+  "Rali Car : 2000000",
+  "Pesho : 0.000001",
+  "Barrel : 10",
+]);
