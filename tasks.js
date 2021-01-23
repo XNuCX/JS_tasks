@@ -93,3 +93,45 @@ function radar(speed, area) {
   }
 }
 radar(200, "motorway");
+
+function cooking(num, ...param) {
+  for (let i of param) {
+    if (i === "chop") {
+      num /= 2;
+      console.log(num);
+    }
+    if (i === "dice") {
+      num = Math.sqrt(num);
+      console.log(num);
+    }
+    if (i === "spice") {
+      num++;
+      console.log(num);
+    }
+    if (i === "bake") {
+      num *= 3;
+      console.log(num);
+    }
+    if (i === "fillet") {
+      num -= num * 0.2;
+      console.log(num);
+    }
+  }
+}
+cooking("9", "dice", "spice", "chop", "bake", "fillet");
+
+function validity(x1, y1, x2, y2) {
+  const dist = function (x1, y1, x2, y2) {
+    return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+  };
+  if (dist(x1, y1, 0, 0) % 1 === 0) {
+    console.log(`{${x1}, ${y1}} to {0, 0} is valid`);
+  } else console.log(`{${x1}, ${y1}} to {0, 0} is invalid`);
+  if (dist(x2, y2, 0, 0) % 1 === 0) {
+    console.log(`{${x2}, ${y2}} to {0, 0} is valid`);
+  } else console.log(`{${x2}, ${y2}} to {0, 0} is invalid`);
+  if (dist(x1, y1, x2, y2) % 1 === 0) {
+    console.log(`{${x1}, ${y1}} to {${x2}, ${y2}} is valid`);
+  } else console.log(`{${x1}, ${y1}} to {${x2}, ${y2}} is invalid`);
+}
+validity(2, 1, 1, 1);
