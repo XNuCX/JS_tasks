@@ -281,3 +281,35 @@ heroicInvent([
   "Derek / 12 / BarrelVest, DestructionSword",
   "Hes / 1",
 ]);
+
+function lowestPrices(arr) {
+  const products = {};
+  for (let el of arr) {
+    let [towns, product, price] = el.split(" | ");
+    if (products[`${product}`]) {
+      if (products[`${product}`]["prices"] > Number(price)) {
+        products[`${product}`]["town"] = towns;
+        products[`${product}`] = { prices: Number(price), town: towns };
+      }
+    } else {
+      products[`${product}`] = { prices: Number(price), town: towns };
+    }
+  }
+  for (let [k, v] of Object.entries(products)) {
+    console.log(`${k} -> ${v["prices"]} (${v["town"]})`);
+  }
+}
+
+lowestPrices([
+  "Sofia City | Audi | 100000",
+  "Sofia City | BMW | 100000",
+  "Sofia City | Mitsubishi | 10000",
+  "Sofia City | Mercedes | 10000",
+  "Sofia City | NoOffenseToCarLovers | 0",
+  "Mexico City | Audi | 1000",
+  "Mexico City | BMW | 99999",
+  "New York City | Mitsubishi | 10000",
+  "New York City | Mitsubishi | 1000",
+  "Mexico City | Audi | 100000",
+  "Washington City | Mercedes | 1000",
+]);
