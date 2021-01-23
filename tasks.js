@@ -189,3 +189,6 @@ function listOfNumbers(arr) {
   return arr1;
 }
 listOfNumbers([1, 65, 3, 52, 48, 63, 31, -3, 18, 56]);
+
+function calorie() {}
+calorie();
