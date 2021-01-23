@@ -190,5 +190,13 @@ function listOfNumbers(arr) {
 }
 listOfNumbers([1, 65, 3, 52, 48, 63, 31, -3, 18, 56]);
 
-function calorie() {}
-calorie();
+function calorie(arr) {
+  const calorieObject = {};
+  for (let i = 0; i < arr.length; i++) {
+    if (i % 2 !== 0) {
+      calorieObject[arr[i - 1]] = Number(arr[i]);
+    }
+  }
+  console.log(calorieObject);
+}
+calorie(["Yoghurt", "48", "Rise", "138", "Apple", "52"]);
