@@ -135,3 +135,57 @@ function validity(x1, y1, x2, y2) {
   } else console.log(`{${x1}, ${y1}} to {${x2}, ${y2}} is invalid`);
 }
 validity(2, 1, 1, 1);
+
+function delimeter(arr, sign) {
+  console.log(arr.join(`${sign}`));
+}
+
+delimeter(["How about no?", "I", "will", "not", "do", "it!"], "_");
+
+function printEvery(arr, num) {
+  const resultArr = [];
+  for (let i = 0; i < arr.length; i += num) resultArr.push(arr[i]);
+
+  return resultArr;
+}
+printEvery(["5", "20", "31", "4", "20"], 2);
+
+function rotate(arr, num) {
+  for (let i = 0; i < num; i++) {
+    arr.unshift(arr.pop());
+  }
+  console.log(arr.join(" "));
+}
+rotate(["1", "2", "3", "4"], 2);
+
+function listOfNames(arr) {
+  arr.sort((a, b) => {
+    let nameA = a.toUpperCase();
+    let nameB = b.toUpperCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+  for (let i = 1; i <= arr.length; i++) {
+    console.log(`${i}.${arr[i - 1]}`);
+  }
+}
+listOfNames(["John", "Bob", "Christina", "Ema", "bob", "undefind"]);
+
+function listOfNumbers(arr) {
+  arr.sort((a, b) => a - b);
+  let arr1 = [];
+  let arL = arr.length;
+  for (let i = 0; i < arL; i++) {
+    if (i % 2 !== 0) {
+      arr1.push(arr.pop());
+    } else arr1.push(arr.shift());
+  }
+
+  return arr1;
+}
+listOfNumbers([1, 65, 3, 52, 48, 63, 31, -3, 18, 56]);
