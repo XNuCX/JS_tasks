@@ -391,3 +391,23 @@ towns([
   "| Veliko Turnovo | 43.0757 | 25.6172 |",
   "| Monatevideo | 34.50 | 56.11 |",
 ]);
+
+function rectangle(...arr) {
+  let [width1, height1, color1] = arr;
+  color1 = color1.slice(0, 1).toUpperCase() + color1.slice(1);
+  const obj = {
+    width: Number(width1),
+    height: Number(height1),
+    color: String(color1),
+    calcArea: function () {
+      return Number(this.width * this.height);
+    },
+  };
+
+  return obj;
+}
+let rect = rectangle(4, 5, "red");
+console.log(rect.width);
+console.log(rect.height);
+console.log(rect.color);
+console.log(rect.calcArea());
