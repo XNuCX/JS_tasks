@@ -356,3 +356,38 @@ stroreCatalogue([
   "Pesho : 0.000001",
   "Barrel : 10",
 ]);
+
+function towns(arr) {
+  const mainArr = [];
+  const newArr = [];
+  let obj = {};
+  for (let [i, el] of arr.entries()) {
+    // el = el.replace(//gm, "', '")
+    newArr.push(el.replace(/^\|\s|\s\|$/gm, ""));
+  }
+  // console.log(newArr);
+
+  let [el1, el2, el3] = newArr[0].split(" | ");
+  for (let i = 1; i < newArr.length; i++) {
+    let [town, lat, lot] = newArr[i].split(" | ");
+
+    let obj = {};
+    obj[`${el1}`] = town;
+    obj[`${el2}`] = Number(Number(lat).toFixed(2));
+    obj[`${el3}`] = Number(Number(lot).toFixed(2));
+    mainArr.push(obj);
+  }
+
+  console.log(JSON.stringify(mainArr));
+}
+towns([
+  "| Town | Latitude | Longitude |",
+  "| Sofia | 42.696552 | 23.32601 |",
+  "| Beijing | 39.913818 | 116.363625 |",
+]);
+
+towns([
+  "| Town | Latitude | Longitude |",
+  "| Veliko Turnovo | 43.0757 | 25.6172 |",
+  "| Monatevideo | 34.50 | 56.11 |",
+]);
