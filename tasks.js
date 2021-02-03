@@ -411,3 +411,43 @@ console.log(rect.width);
 console.log(rect.height);
 console.log(rect.color);
 console.log(rect.calcArea());
+
+function solve() {
+  const obj = {
+    mage: function (name) {
+      return {
+        name: name,
+        health: 100,
+        mana: 100,
+        cast: function (spell) {
+          this.mana--;
+          return console.log(`${this.name} cast ${spell}`);
+        },
+      };
+    },
+    fighter: function (name) {
+      return {
+        name: name,
+        health: 100,
+        stamina: 100,
+        fight: function () {
+          this.stamina--;
+          return console.log(`${this.name} slashes at the foe!`);
+        },
+      };
+    },
+  };
+  return obj;
+}
+let create = solve();
+
+const scorcher = create.mage("Scorcher");
+scorcher.cast("fireball");
+scorcher.cast("thunder");
+scorcher.cast("light");
+
+const scorcher2 = create.fighter("Scorcher 2");
+scorcher2.fight();
+
+console.log(scorcher2.stamina);
+console.log(scorcher.mana);
