@@ -1,29 +1,37 @@
 // const describe = require("mocha").describe;
 const assert = require("chai").assert;
-function isOddOrEven(string) {
-  if (typeof string !== "string") {
+function lookupChar(string, index) {
+  if (typeof string !== "string" || !Number.isInteger(index)) {
     return undefined;
   }
-  if (string.length % 2 === 0) {
-    return "even";
+  if (string.length <= index || index < 0) {
+    return "Incorrect index";
   }
 
-  return "odd";
+  return string.charAt(index);
 }
-describe("check", () => {
-  it("check", () => {
-    assert.equal(isOddOrEven([1]), undefined, "check");
-    assert.equal(isOddOrEven({}), undefined, "check");
-    assert.equal(isOddOrEven(0), undefined, "check");
+describe("lookupChar check", () => {
+  it("check type", () => {
+    assert.equal(lookupChar("a", "0"), undefined, "check string + string");
+    assert.equal(lookupChar(0, "0"), undefined, "check num + string");
+    assert.equal(lookupChar(1, [1]), undefined, "check num + arr");
+    assert.equal(lookupChar(["w"], 0), undefined, "check num + arr");
+    assert.equal(lookupChar("wa", 0.1), undefined, "check num + arr");
   });
-  it("check", () => {
-    assert.equal(isOddOrEven("01"), "even", "check");
-    assert.equal(isOddOrEven(".."), "even", "check");
-    assert.equal(isOddOrEven("abvg"), "even", "check");
+  it("check index", () => {
+    assert.equal(
+      lookupChar("a", 2),
+      "Incorrect index",
+      "check string + string"
+    );
+    assert.equal(lookupChar("a", 1), "Incorrect index", "check num + string");
+    assert.equal(lookupChar(" ", -1), "Incorrect index", "check num + string");
+    assert.equal(lookupChar(" ", 1), "Incorrect index", "check num + string");
+    assert.equal(lookupChar("ab", 11), "Incorrect index", "check num + arr");
   });
-  it("check", () => {
-    assert.equal(isOddOrEven("0"), "odd", "check");
-    assert.equal(isOddOrEven("tes"), "odd", "check");
-    assert.equal(isOddOrEven("tes tes"), "odd", "check");
+  it("check check result", () => {
+    assert.equal(lookupChar("a", 0), "a", "check string + string");
+    assert.equal(lookupChar("abv", 2), "v", "check num + string");
+    assert.equal(lookupChar("ao", 1), "o", "check num + arr");
   });
 });
