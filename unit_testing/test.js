@@ -1,37 +1,48 @@
-// const describe = require("mocha").describe;
 const assert = require("chai").assert;
-function lookupChar(string, index) {
-  if (typeof string !== "string" || !Number.isInteger(index)) {
-    return undefined;
-  }
-  if (string.length <= index || index < 0) {
-    return "Incorrect index";
-  }
+const expect = require("chai").expect;
+let mathEnforcer = {
+  addFive: function (num) {
+    if (typeof num !== "number") {
+      return undefined;
+    }
+    return num + 5;
+  },
+  subtractTen: function (num) {
+    if (typeof num !== "number") {
+      return undefined;
+    }
+    return num - 10;
+  },
+  sum: function (num1, num2) {
+    if (typeof num1 !== "number" || typeof num2 !== "number") {
+      return undefined;
+    }
+    return num1 + num2;
+  },
+};
+describe("mathEnforcerObject", () => {
+  it("add", () => {
+    assert.equal(mathEnforcer.addFive("5"), undefined, "nonNumber");
+    assert.equal(mathEnforcer.addFive(-1), 4, "nonNumber");
+    assert.equal(mathEnforcer.addFive(0), 5, "nonNumber");
+    // assert.closeTo(mathEnforcer.addFive(0.1), 5.1, "nonNumber");
+    expect(mathEnforcer.addFive(0.1)).to.be.closeTo(5.1, 0.0001);
+  });
+  it("substract", () => {
+    assert.equal(mathEnforcer.subtractTen("[1]"), undefined, "nonNumber");
+    assert.equal(mathEnforcer.subtractTen(-1), -11, "nonNumber");
+    assert.equal(mathEnforcer.subtractTen(0), -10, "nonNumber");
 
-  return string.charAt(index);
-}
-describe("lookupChar check", () => {
-  it("check type", () => {
-    assert.equal(lookupChar("a", "0"), undefined, "check string + string");
-    assert.equal(lookupChar(0, "0"), undefined, "check num + string");
-    assert.equal(lookupChar(1, [1]), undefined, "check num + arr");
-    assert.equal(lookupChar(["w"], 0), undefined, "check num + arr");
-    assert.equal(lookupChar("wa", 0.1), undefined, "check num + arr");
+    expect(mathEnforcer.subtractTen(1.1)).to.be.closeTo(-8.9, 0.0001);
   });
-  it("check index", () => {
-    assert.equal(
-      lookupChar("a", 2),
-      "Incorrect index",
-      "check string + string"
-    );
-    assert.equal(lookupChar("a", 1), "Incorrect index", "check num + string");
-    assert.equal(lookupChar(" ", -1), "Incorrect index", "check num + string");
-    assert.equal(lookupChar(" ", 1), "Incorrect index", "check num + string");
-    assert.equal(lookupChar("ab", 11), "Incorrect index", "check num + arr");
-  });
-  it("check check result", () => {
-    assert.equal(lookupChar("a", 0), "a", "check string + string");
-    assert.equal(lookupChar("abv", 2), "v", "check num + string");
-    assert.equal(lookupChar("ao", 1), "o", "check num + arr");
+  it("sum", () => {
+    assert.equal(mathEnforcer.sum(1, [1]), undefined, "nonNumber");
+    assert.equal(mathEnforcer.sum([1], 1), undefined, "nonNumber");
+    assert.equal(mathEnforcer.sum("1", "1"), undefined, "nonNumber");
+    assert.equal(mathEnforcer.sum(-1, 0), -1, "nonNumber");
+    assert.equal(mathEnforcer.sum(10, 5), 15, "nonNumber");
+    assert.equal(mathEnforcer.sum(-1, -1), -2, "nonNumber");
+
+    expect(mathEnforcer.sum(0.1, 0.1)).to.be.closeTo(0.2, 0.0001);
   });
 });
