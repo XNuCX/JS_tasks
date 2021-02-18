@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "Launch Program",
-      "program": "${workspaceFolder}/sorted_list.js",
+      "program": "${workspaceFolder}/auto_company.js",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node"
