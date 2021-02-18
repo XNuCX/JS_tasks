@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "Launch Program",
-      "program": "${workspaceFolder}/baloons.js",
+      "program": "${workspaceFolder}/sorted_list.js",
       "request": "launch",
       "skipFiles": ["<node_internals>/**"],
       "type": "pwa-node"
